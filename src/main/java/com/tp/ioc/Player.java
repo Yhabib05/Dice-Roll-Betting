@@ -4,8 +4,24 @@ import java.util.Random;
 import java.util.Set;
 
 public class Player {
-    int number;
-    int dice;
+    private int number;
+    private int dice;
+
+    public int getDice() {
+        return dice;
+    }
+
+    public int getNumber() {
+        return number;
+    }
+
+    public void setNumber(int number) {
+        this.number = number;
+    }
+
+    public void setDice(int dice) {
+        this.dice = dice;
+    }
 
     public Player(int number) {
         this.number = number;
@@ -18,7 +34,7 @@ public class Player {
 
         } while(usedNumbers.contains(diceNumber));
         usedNumbers.add(diceNumber);
-        this.dice = diceNumber;
+        this.setDice(diceNumber);
     }
 
 }

@@ -2,7 +2,7 @@ package com.tp.ioc;
 
 import java.util.*;
 
-public class FingerDiceGame {
+public class FateFinger {
     Scanner sc = new Scanner(System.in);
     Random random = new Random();
     List<Player> players = new ArrayList<>();
@@ -12,7 +12,7 @@ public class FingerDiceGame {
         int min= readInt("enter the minimum range");
         int max= readInt("enter the maximum range");
         int playersNumber = readInt("enter the number of players");
-        this.sc.nextLine();
+        this.sc.nextLine(); // clear the leftover newline(enter) before the loop
 
 
         if(min >= max || (max - min+1)<playersNumber){
@@ -22,26 +22,25 @@ public class FingerDiceGame {
 
 
         for(int i=0;i<playersNumber;i++){
-            players.add(new Player(i));
+            this.players.add(new Player(i));
         }
 
         for(Player p: players){
-            System.out.println("Player "+ p.number +" is playing, Press a Key to roll the dice...");
+            System.out.println("Player "+ p.getNumber() +" is playing, Press a Key to roll the dice...");
             this.sc.nextLine();
             p.rollDice(usedNumbers,random,min,max);
-            System.out.println("Player "+ p.number +" rolled dice! \n He got : "+ p.dice);
+            System.out.println("Player "+ p.getNumber() +" rolled dice! \n He got : "+ p.getDice());
 
         }
 
-        Player loser = Collections.min(players,Comparator.comparingInt(p->p.dice));
-        System.out.println("Player "  + loser.number + " loses with " + loser.dice);
-
+        Player loser = Collections.min(players,Comparator.comparingInt(p->p.getDice()));
+        System.out.println("Player "  + loser.getNumber() + " loses with " + loser.getDice());
     }
 
     private int readInt(String message){
         System.out.println(message);
         while(!sc.hasNextInt()){
-            sc.next();
+            sc.next();//it s not an integer so let s consume it
             System.out.println("Please enter an integer");
         }
         return sc.nextInt();
